@@ -293,7 +293,7 @@
                     staticClass: "brand"
                 }, [n("img", {
                     attrs: {
-                        src: "/logo.png"
+                        src: "/atweb/logo.png"
                     }
                 }), n("h1", {
                     staticClass: "mt-3 mb-5"
@@ -476,7 +476,7 @@
                         key: t.fileName(e)
                     }, [n("td", [n("img", {
                         attrs: {
-                            src: "/icons/" + e.iconName
+                            src: "/atweb/icons/" + e.iconName
                         }
                     }), t.isFolder(e.iconName) || t.isLuaPackage(e.filePath) ? n("router-link", {
                         attrs: {
