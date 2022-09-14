@@ -24,7 +24,6 @@
         i = [];
 
     function a(t) {
-        console.log(c);
         return c.p + "atweb/js/" + ({} [t] || t) + "." + {
             "chunk-0b65ffb6": "33822ef0",
             "chunk-12950967": "efd128fb",
