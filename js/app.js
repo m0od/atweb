@@ -25,7 +25,7 @@
 
     function a(t) {
         console.log(c.p);
-        return c.p + "js/" + ({} [t] || t) + "." + {
+        return "../atweb/js/" + ({} [t] || t) + "." + {
             "chunk-0b65ffb6": "33822ef0",
             "chunk-12950967": "efd128fb",
             "chunk-2d0a3577": "d9f896b2",
@@ -344,18 +344,16 @@
                     attrs: {
                         href: "../"
                     }
-                }, [t._v("AutoTouch Dashboard")]), n("div", {
+                }, [t._v(this.$route.query.host.substr(0, this.$route.query.host.indexOf(':')))]), n("div", {
                     staticClass: "navbar-nav ml-auto"
-                }, [
-                    n("button", {
+                }, [n("button", {
                     staticClass: "btn btn-secondary btn-sm mr-2",
                     on: {
                         click: function(e) {
-                            return t.snapShotLua(!t.snapshot)
+                            return t.snapShot()
                         }
                     }
-                }, [t._v("SnapShot")]),
-                    n("button", {
+                }, [t._v("SnapShot")]), n("button", {
                     staticClass: "btn btn-secondary btn-sm",
                     on: {
                         click: function(e) {
@@ -371,12 +369,28 @@
                     return {
                         showLeft: !0,
                         showLog: !1,
-                        snapShot: !1
+                        // snapShot: !1
                     }
                 },
                 methods: {
-                    snapShotLua: function(t) {
-						this.snapShot = t, this.$store.commit("setSnapShot", t)
+                    snapShot: function(t) {
+                        var path = "/../Library/LuaLibraries/snapshot.lua"
+                        var e = this, n = "/control/start_playing?path="
+                            + encodeURIComponent(path);
+                        e.$http.get(n).then((function(t) {
+                            var n = t.data;
+                            "success" != n.status && e.$notify({
+                                group: "main",
+                                type: "error",
+                                text: "snapshot.lua doesn't exist"
+                            })
+                        })).catch((function(t) {
+                            e.$notify({
+                                group: "main",
+                                type: "error",
+                                text: t
+                            })
+                        }))
 					},
                     switchLog: function(t) {
                         this.showLog = t, this.$store.commit("setShowLog", t)
@@ -1466,7 +1480,7 @@
                 showLoading: !1,
                 showLeft: !0,
                 showLog: !1,
-                snapshot: !1,
+                // snapshot: !1,
                 currentDir: null,
                 currentFile: {
                     filePath: null,
@@ -1486,17 +1500,6 @@
                 setShowLog: function(t, e) {
                     t.showLog = e
                 },
-                setSnapShot: function(t, e) {
-					try {
-						e = "/../Library/LuaLibraries/snapshot.lua";
-						var xmlHttp = new XMLHttpRequest();
-						var url = "/control/start_playing?path=" + encodeURIComponent(e);
-						xmlHttp.open("GET", url, true);
-						xmlHttp.send(null);
-					}catch(err) {
-						alert(err.toString());
-					}
-				},
                 setCurrentDir: function(t, e) {
                     t.currentDir = e
                 },
