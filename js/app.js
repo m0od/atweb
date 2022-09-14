@@ -346,7 +346,16 @@
                     }
                 }, [t._v("AutoTouch Dashboard")]), n("div", {
                     staticClass: "navbar-nav ml-auto"
-                }, [n("button", {
+                }, [
+                    n("button", {
+                    staticClass: "btn btn-secondary btn-sm mr-2",
+                    on: {
+                        click: function(e) {
+                            return t.snapShotLua(!t.snapshot)
+                        }
+                    }
+                }, [t._v("SnapShot")]),
+                    n("button", {
                     staticClass: "btn btn-secondary btn-sm",
                     on: {
                         click: function(e) {
@@ -361,10 +370,14 @@
                 data: function() {
                     return {
                         showLeft: !0,
-                        showLog: !1
+                        showLog: !1,
+                        snapShot: !1
                     }
                 },
                 methods: {
+                    snapShotLua: function(t) {
+						this.snapShot = t, this.$store.commit("setSnapShot", t)
+					},
                     switchLog: function(t) {
                         this.showLog = t, this.$store.commit("setShowLog", t)
                     },
@@ -476,7 +489,7 @@
                         key: t.fileName(e)
                     }, [n("td", [n("img", {
                         attrs: {
-                            src: "/atweb/icons/" + e.iconName
+                            src: "../atweb/icons/" + e.iconName
                         }
                     }), t.isFolder(e.iconName) || t.isLuaPackage(e.filePath) ? n("router-link", {
                         attrs: {
@@ -1453,6 +1466,7 @@
                 showLoading: !1,
                 showLeft: !0,
                 showLog: !1,
+                snapshot: !1,
                 currentDir: null,
                 currentFile: {
                     filePath: null,
@@ -1472,6 +1486,17 @@
                 setShowLog: function(t, e) {
                     t.showLog = e
                 },
+                setSnapShot: function(t, e) {
+					try {
+						e = "/../Library/LuaLibraries/snapshot.lua";
+						var xmlHttp = new XMLHttpRequest();
+						var url = "/control/start_playing?path=" + encodeURIComponent(e);
+						xmlHttp.open("GET", url, true);
+						xmlHttp.send(null);
+					}catch(err) {
+						alert(err.toString());
+					}
+				},
                 setCurrentDir: function(t, e) {
                     t.currentDir = e
                 },

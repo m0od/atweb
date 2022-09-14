@@ -297,13 +297,14 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 500px;
+  width: 29%;
 }
 .main .right[data-v-21dcfcda] {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
+  width: 70%;
 }
 .hideLeft .left[data-v-21dcfcda] {
   left: -500px;
@@ -327,7 +328,6 @@
   animation-duration: 0.5s;
 }
 .showLeft .right[data-v-21dcfcda] {
-  left: 510px;
   -webkit-animation-name: show-left-right-animation-data-v-21dcfcda;
   animation-name: show-left-right-animation-data-v-21dcfcda;
   -webkit-animation-duration: 0.5s;
@@ -4682,7 +4682,7 @@ input[type="submit"].btn-block {
 .navbar-nav {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: inline;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
